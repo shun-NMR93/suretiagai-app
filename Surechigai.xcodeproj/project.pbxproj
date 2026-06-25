@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* SurechigaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* SurechigaiApp.swift */; };
+		A10000000000000000000002 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* HomeView.swift */; };
+		A10000000000000000000003 /* PassingRadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* PassingRadarView.swift */; };
+		A10000000000000000000004 /* StepCounterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000004 /* StepCounterHeaderView.swift */; };
+		A10000000000000000000005 /* NintendoTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* NintendoTheme.swift */; };
+		A10000000000000000000006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* Assets.xcassets */; };
+		A10000000000000000000007 /* StepMilestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* StepMilestone.swift */; };
+		A10000000000000000000008 /* PedometerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* PedometerService.swift */; };
+		A10000000000000000000009 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* CoreMotion.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		A10000000000000000000010 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000010 /* UserProfile.swift */; };
+		A10000000000000000000011 /* FoxAvatarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000011 /* FoxAvatarConfig.swift */; };
+		A10000000000000000000012 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000012 /* ProfileStore.swift */; };
+		A10000000000000000000013 /* ProfileAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000013 /* ProfileAvatarView.swift */; };
+		A10000000000000000000014 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000014 /* ProfileView.swift */; };
+		A10000000000000000000015 /* FoxPartCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000015 /* FoxPartCatalog.swift */; };
+		A10000000000000000000016 /* FoxAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000016 /* FoxAvatarView.swift */; };
+		A10000000000000000000017 /* FoxAvatarEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000017 /* FoxAvatarEditorView.swift */; };
+		A10000000000000000000018 /* EncounteredProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000018 /* EncounteredProfile.swift */; };
+		A10000000000000000000020 /* EncounteredProfilesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000020 /* EncounteredProfilesStore.swift */; };
+		A10000000000000000000021 /* EncounteredListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000021 /* EncounteredListView.swift */; };
+		A10000000000000000000022 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000022 /* BLEManager.swift */; };
+		A10000000000000000000023 /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000023 /* BLEService.swift */; };
+		A10000000000000000000025 /* CollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000025 /* CollectionListView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		23E5845F2FC4756800C6E1C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20000000000000000000001 /* SurechigaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurechigaiApp.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* PassingRadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassingRadarView.swift; sourceTree = "<group>"; };
+		A20000000000000000000004 /* StepCounterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCounterHeaderView.swift; sourceTree = "<group>"; };
+		A20000000000000000000005 /* NintendoTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NintendoTheme.swift; sourceTree = "<group>"; };
+		A20000000000000000000006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A20000000000000000000007 /* StepMilestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepMilestone.swift; sourceTree = "<group>"; };
+		A20000000000000000000008 /* PedometerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerService.swift; sourceTree = "<group>"; };
+		A20000000000000000000009 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		A20000000000000000000010 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		A20000000000000000000011 /* FoxAvatarConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoxAvatarConfig.swift; sourceTree = "<group>"; };
+		A20000000000000000000012 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		A20000000000000000000013 /* ProfileAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarView.swift; sourceTree = "<group>"; };
+		A20000000000000000000014 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A20000000000000000000015 /* FoxPartCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoxPartCatalog.swift; sourceTree = "<group>"; };
+		A20000000000000000000016 /* FoxAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoxAvatarView.swift; sourceTree = "<group>"; };
+		A20000000000000000000017 /* FoxAvatarEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoxAvatarEditorView.swift; sourceTree = "<group>"; };
+		A20000000000000000000018 /* EncounteredProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounteredProfile.swift; sourceTree = "<group>"; };
+		A20000000000000000000020 /* EncounteredProfilesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounteredProfilesStore.swift; sourceTree = "<group>"; };
+		A20000000000000000000021 /* EncounteredListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounteredListView.swift; sourceTree = "<group>"; };
+		A20000000000000000000022 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		A20000000000000000000023 /* BLEService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
+		A20000000000000000000025 /* CollectionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListView.swift; sourceTree = "<group>"; };
+		A30000000000000000000001 /* Surechigai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Surechigai.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A40000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000009 /* CoreMotion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		238764822FC3FE1F001FF89E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000009 /* CoreMotion.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		A50000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A50000000000000000000002 /* Surechigai */,
+				A50000000000000000000003 /* Products */,
+				238764822FC3FE1F001FF89E /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		A50000000000000000000002 /* Surechigai */ = {
+			isa = PBXGroup;
+			children = (
+				23E5845F2FC4756800C6E1C3 /* Info.plist */,
+				A20000000000000000000001 /* SurechigaiApp.swift */,
+				A50000000000000000000007 /* Models */,
+				A50000000000000000000008 /* Services */,
+				A50000000000000000000004 /* Views */,
+				A50000000000000000000005 /* Components */,
+				A50000000000000000000006 /* Theme */,
+				A20000000000000000000006 /* Assets.xcassets */,
+			);
+			path = Surechigai;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A30000000000000000000001 /* Surechigai.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000002 /* HomeView.swift */,
+				A20000000000000000000014 /* ProfileView.swift */,
+				A20000000000000000000021 /* EncounteredListView.swift */,
+				A20000000000000000000025 /* CollectionListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000005 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000003 /* PassingRadarView.swift */,
+				A20000000000000000000004 /* StepCounterHeaderView.swift */,
+				A20000000000000000000013 /* ProfileAvatarView.swift */,
+				A20000000000000000000016 /* FoxAvatarView.swift */,
+				A20000000000000000000017 /* FoxAvatarEditorView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000006 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000005 /* NintendoTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000007 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000007 /* StepMilestone.swift */,
+				A20000000000000000000010 /* UserProfile.swift */,
+				A20000000000000000000011 /* FoxAvatarConfig.swift */,
+				A20000000000000000000015 /* FoxPartCatalog.swift */,
+				A20000000000000000000018 /* EncounteredProfile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000008 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000008 /* PedometerService.swift */,
+				A20000000000000000000012 /* ProfileStore.swift */,
+				A20000000000000000000020 /* EncounteredProfilesStore.swift */,
+				A20000000000000000000022 /* BLEManager.swift */,
+				A20000000000000000000023 /* BLEService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A60000000000000000000001 /* Surechigai */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A90000000000000000000003 /* Build configuration list for PBXNativeTarget "Surechigai" */;
+			buildPhases = (
+				A60000000000000000000002 /* Sources */,
+				A40000000000000000000001 /* Frameworks */,
+				A60000000000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Surechigai;
+			productName = Surechigai;
+			productReference = A30000000000000000000001 /* Surechigai.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A70000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					A60000000000000000000001 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+				};
+			};
+			buildConfigurationList = A90000000000000000000001 /* Build configuration list for PBXProject "Surechigai" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ja;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ja,
+			);
+			mainGroup = A50000000000000000000001;
+			productRefGroup = A50000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A60000000000000000000001 /* Surechigai */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A60000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000006 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A60000000000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* SurechigaiApp.swift in Sources */,
+				A10000000000000000000002 /* HomeView.swift in Sources */,
+				A10000000000000000000003 /* PassingRadarView.swift in Sources */,
+				A10000000000000000000004 /* StepCounterHeaderView.swift in Sources */,
+				A10000000000000000000005 /* NintendoTheme.swift in Sources */,
+				A10000000000000000000007 /* StepMilestone.swift in Sources */,
+				A10000000000000000000008 /* PedometerService.swift in Sources */,
+				A10000000000000000000010 /* UserProfile.swift in Sources */,
+				A10000000000000000000011 /* FoxAvatarConfig.swift in Sources */,
+				A10000000000000000000015 /* FoxPartCatalog.swift in Sources */,
+				A10000000000000000000016 /* FoxAvatarView.swift in Sources */,
+				A10000000000000000000017 /* FoxAvatarEditorView.swift in Sources */,
+				A10000000000000000000012 /* ProfileStore.swift in Sources */,
+				A10000000000000000000013 /* ProfileAvatarView.swift in Sources */,
+				A10000000000000000000014 /* ProfileView.swift in Sources */,
+				A10000000000000000000018 /* EncounteredProfile.swift in Sources */,
+				A10000000000000000000020 /* EncounteredProfilesStore.swift in Sources */,
+				A10000000000000000000021 /* EncounteredListView.swift in Sources */,
+				A10000000000000000000022 /* BLEManager.swift in Sources */,
+				A10000000000000000000023 /* BLEService.swift in Sources */,
+				A10000000000000000000025 /* CollectionListView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A80000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SQ8AC5ZNGF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A80000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SQ8AC5ZNGF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A80000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Surechigai/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "すれちがい";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "すれ違い通信のためにBluetoothを使用して近くのデバイスと通信します";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "すれ違い通信のためにBluetoothを使用して近くのデバイスと通信します";
+				INFOPLIST_KEY_NSBonjourServices = _vibe._tcp;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "すれ違い通信のために近くのデバイスを検出します";
+				INFOPLIST_KEY_NSMotionUsageDescription = "今日の歩数を計測し、1,000歩ごとの報酬に利用します。";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "bluetooth-le";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nomurashun.surechigaiapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A80000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Surechigai/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "すれちがい";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "すれ違い通信のためにBluetoothを使用して近くのデバイスと通信します";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "すれ違い通信のためにBluetoothを使用して近くのデバイスと通信します";
+				INFOPLIST_KEY_NSBonjourServices = _vibe._tcp;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "すれ違い通信のために近くのデバイスを検出します";
+				INFOPLIST_KEY_NSMotionUsageDescription = "今日の歩数を計測し、1,000歩ごとの報酬に利用します。";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "bluetooth-le";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nomurashun.surechigaiapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A90000000000000000000001 /* Build configuration list for PBXProject "Surechigai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80000000000000000000001 /* Debug */,
+				A80000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A90000000000000000000003 /* Build configuration list for PBXNativeTarget "Surechigai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80000000000000000000003 /* Debug */,
+				A80000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A70000000000000000000001 /* Project object */;
+}
