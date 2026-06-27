@@ -45,16 +45,12 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegat
         
         // Central Managerの初期化（受信機能用）
         // State Preservation and Restorationを有効にする
-        let centralOptions: [String: Any] = [
-            CBCentralManagerOptionRestoreIdentifierKey: "com.surechigai.central.restore"
-        ]
+        let centralOptions: [String: Any] = [:]
         centralManager = CBCentralManager(delegate: self, queue: nil, options: centralOptions)
         
         // Peripheral Managerの初期化（送信機能用）
         // State Preservation and Restorationを有効にする
-        let peripheralOptions: [String: Any] = [
-            CBPeripheralManagerOptionRestoreIdentifierKey: "com.surechigai.peripheral.restore"
-        ]
+        let peripheralOptions: [String: Any] = [:]
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: peripheralOptions)
     }
     
@@ -70,7 +66,8 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegat
         // Bluetoothが有効か確認
         if centralManager.state == .poweredOn {
             // ターゲットのサービスUUIDを持つデバイスをスキャン
-            centralManager.scanForPeripherals(withServices: [serviceUUID], options: nil)
+            centralManager.scanForPeripherals(withServices: [serviceUUID],
+                options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
             updateStatus("スキャンを開始しました")
         } else {
             updateStatus("Bluetoothが有効ではありません")
@@ -90,12 +87,9 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegat
         isSendingEnabled = enabled
         
         if enabled {
-            // フォアグラウンドに入ったのでアドバタイズを開始
             startAdvertising()
-        } else {
-            // バックグラウンドに入ったのでアドバタイズを停止
-            stopAdvertising()
         }
+        // バックグラウンドでもアドバタイズ・接続を継続するため stopAdvertising() を呼ばない
     }
     
     // アドバタイズを開始する（送信機能用）
@@ -165,10 +159,6 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegat
     
     // 指定された文字列を送信する
     func sendData(_ dataString: String) {
-        guard isSendingEnabled else {
-            updateStatus("送信機能が無効です（フォアグラウンドのみ）")
-            return
-        }
         
         guard let peripheralManager = peripheralManager else {
             updateStatus("Peripheral Managerが初期化されていません")
@@ -246,6 +236,7 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegat
                 }
             }
         }
+        startScanning()
     }
     
     // ペリフェラルを発見した時に呼ばれる
@@ -263,6 +254,15 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegat
                 central.connect(peripheral, options: nil)
             } else {
                 updateStatus("ターゲットのサービスUUIDではありません")
+            }
+        } else if let hashedUUIDs = advertisementData["kCBAdvDataHashedServiceUUIDs"] as? [CBUUID] {
+            // バックグラウンド時はUUIDがハッシュ化される場合がある
+            if hashedUUIDs.contains(serviceUUID) {
+                print("成功！！！！")
+                updateStatus("ハッシュ化されたサービスUUIDを発見、接続を試みます")
+                central.connect(peripheral, options: nil)
+            } else {
+                updateStatus("ハッシュ化UUIDにターゲットは含まれていません")
             }
         } else {
             updateStatus("サービスUUIDが含まれていません")
@@ -353,9 +353,7 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegat
         switch peripheral.state {
         case .poweredOn:
             updateStatus("Peripheral Manager: Bluetoothが有効になりました")
-            if isSendingEnabled {
-                startAdvertising()
-            }
+            startAdvertising()
         case .poweredOff:
             updateStatus("Peripheral Manager: Bluetoothが無効です")
         case .unauthorized:
