@@ -28,13 +28,16 @@ final class EncounteredProfilesStore: ObservableObject {
         load()
     }
 
-    func addProfile(_ profile: UserProfile, peerID: String) {
+    func addProfile(_ profile: UserProfile, peerID: String, remoteUserID: String = "") {
         if let existingIndex = encounteredProfiles.firstIndex(where: { $0.peerID == peerID }) {
             encounteredProfiles[existingIndex].incrementEncounterCount()
             encounteredProfiles[existingIndex].profile = profile
+            if !remoteUserID.isEmpty {
+                encounteredProfiles[existingIndex].remoteUserID = remoteUserID
+            }
             encounteredProfiles.sort { $0.lastEncounteredAt > $1.lastEncounteredAt }
         } else {
-            let encountered = EncounteredProfile(profile: profile, peerID: peerID)
+            let encountered = EncounteredProfile(profile: profile, peerID: peerID, remoteUserID: remoteUserID)
             encounteredProfiles.insert(encountered, at: 0)
         }
 

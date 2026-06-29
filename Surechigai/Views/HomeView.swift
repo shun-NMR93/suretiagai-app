@@ -2,9 +2,9 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var profileStore: ProfileStore
+    @EnvironmentObject private var encounteredStore: EncounteredProfilesStore
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var pedometer = PedometerService()
-    @StateObject private var encounteredStore = EncounteredProfilesStore()
     @StateObject private var bleService = BLEService()
     @State private var sparklePhase = false
     @State private var showsProfile = false
@@ -33,8 +33,9 @@ struct HomeView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .didEncounterProfile)) { notification in
             if let profile = notification.userInfo?["profile"] as? UserProfile,
-               let peerID = notification.userInfo?["peerID"] as? String {
-                encounteredStore.addProfile(profile, peerID: peerID)
+               let peerID = notification.userInfo?["peerID"] as? String,
+               let remoteUserID = notification.userInfo?["remoteUserID"] as? String {
+                encounteredStore.addProfile(profile, peerID: peerID, remoteUserID: remoteUserID)
             }
         }
         .onChange(of: scenePhase) { _, newPhase in
@@ -57,7 +58,7 @@ struct HomeView: View {
             EncounteredListView()
         }
         .sheet(isPresented: $showsCollectionList) {
-            CollectionListView(store: encounteredStore)
+            CollectionListView()
         }
     }
 

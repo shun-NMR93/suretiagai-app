@@ -1,12 +1,14 @@
 import Foundation
 
 struct UserProfile: Codable, Equatable {
+    var userID: String
     var nickname: String
     var greetingMessage: String
     var foxAvatar: FoxAvatarConfig
     var prefecture: String
 
     static let `default` = UserProfile(
+        userID: "",
         nickname: "name",
         greetingMessage: "Hello!World!",
         foxAvatar: .default,
@@ -22,6 +24,7 @@ struct UserProfile: Codable, Equatable {
     }
 
     enum CodingKeys: String, CodingKey {
+        case userID
         case nickname
         case greetingMessage
         case foxAvatar
@@ -30,7 +33,8 @@ struct UserProfile: Codable, Equatable {
         case avatarSymbol // 旧バージョン互換（読み捨て）
     }
 
-    init(nickname: String, greetingMessage: String, foxAvatar: FoxAvatarConfig, prefecture: String = "未設定") {
+    init(userID: String, nickname: String, greetingMessage: String, foxAvatar: FoxAvatarConfig, prefecture: String = "未設定") {
+        self.userID = userID
         self.nickname = nickname
         self.greetingMessage = greetingMessage
         self.foxAvatar = foxAvatar
@@ -39,6 +43,7 @@ struct UserProfile: Codable, Equatable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        userID = try container.decodeIfPresent(String.self, forKey: .userID) ?? ""
         nickname = try container.decode(String.self, forKey: .nickname)
         greetingMessage = try container.decode(String.self, forKey: .greetingMessage)
         prefecture = try container.decodeIfPresent(String.self, forKey: .prefecture) ?? "未設定"
@@ -51,6 +56,7 @@ struct UserProfile: Codable, Equatable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(userID, forKey: .userID)
         try container.encode(nickname, forKey: .nickname)
         try container.encode(greetingMessage, forKey: .greetingMessage)
         try container.encode(foxAvatar.clamped(), forKey: .foxAvatar)

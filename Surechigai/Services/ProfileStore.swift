@@ -14,6 +14,7 @@ final class ProfileStore: ObservableObject {
 
     func save(_ updated: UserProfile) {
         let normalized = UserProfile(
+            userID: updated.userID,
             nickname: String(updated.trimmedNickname.prefix(12)),
             greetingMessage: String(updated.greetingMessage.prefix(32)),
             foxAvatar: updated.foxAvatar.clamped(),
@@ -33,5 +34,9 @@ final class ProfileStore: ObservableObject {
     private func persist(_ profile: UserProfile) {
         guard let data = try? JSONEncoder().encode(profile) else { return }
         UserDefaults.standard.set(data, forKey: Self.storageKey)
+    }
+
+    var hasProfile: Bool {
+        UserDefaults.standard.data(forKey: Self.storageKey) != nil
     }
 }

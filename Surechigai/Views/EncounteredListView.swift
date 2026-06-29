@@ -3,7 +3,7 @@ import SwiftUI
 
 struct EncounteredListView: View {
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var store = EncounteredProfilesStore()
+    @EnvironmentObject private var store: EncounteredProfilesStore
     @State private var showingDeleteAlert = false
     @State private var profileToDelete: EncounteredProfile?
 
@@ -286,4 +286,5 @@ struct DailyStatCard: View {
 
 #Preview {
     EncounteredListView()
+        .environmentObject(EncounteredProfilesStore())
 }

@@ -5,15 +5,17 @@ struct EncounteredProfile: Codable, Identifiable, Equatable {
     var profile: UserProfile
     let encounteredAt: Date
     let peerID: String
+    var remoteUserID: String
     var encounterCount: Int
     var isConfirmed: Bool
     var lastEncounteredAt: Date
 
-    init(profile: UserProfile, peerID: String) {
+    init(profile: UserProfile, peerID: String, remoteUserID: String = "") {
         self.id = UUID()
         self.profile = profile
         self.encounteredAt = Date()
         self.peerID = peerID
+        self.remoteUserID = remoteUserID
         self.encounterCount = 1
         self.isConfirmed = false
         self.lastEncounteredAt = Date()

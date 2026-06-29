@@ -101,9 +101,9 @@ final class BLEService: NSObject, ObservableObject {
             NotificationCenter.default.post(
                 name: .didEncounterProfile,
                 object: nil,
-                userInfo: ["profile": profile, "peerID": "BLE"]
+                userInfo: ["profile": profile, "peerID": "BLE", "remoteUserID": profile.userID]
             )
-            
+
             // ローカル通知を発行
             sendLocalNotification(profile: profile)
         }

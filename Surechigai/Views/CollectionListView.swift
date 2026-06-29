@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CollectionListView: View {
     @Environment(\.dismiss) private var dismiss
-    @ObservedObject var store = EncounteredProfilesStore()
+    @EnvironmentObject var store: EncounteredProfilesStore
     
     var body: some View {
         NavigationStack {
@@ -113,4 +113,5 @@ struct PrefectureCell: View {
 
 #Preview {
     CollectionListView()
+        .environmentObject(EncounteredProfilesStore())
 }

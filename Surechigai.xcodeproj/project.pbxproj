@@ -30,6 +30,7 @@
 		A10000000000000000000022 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000022 /* BLEManager.swift */; };
 		A10000000000000000000023 /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000023 /* BLEService.swift */; };
 		A10000000000000000000025 /* CollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000025 /* CollectionListView.swift */; };
+		A10000000000000000000026 /* ProfileRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000026 /* ProfileRegistrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		A20000000000000000000022 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 		A20000000000000000000023 /* BLEService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
 		A20000000000000000000025 /* CollectionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListView.swift; sourceTree = "<group>"; };
+		A20000000000000000000026 /* ProfileRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegistrationView.swift; sourceTree = "<group>"; };
 		A30000000000000000000001 /* Surechigai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Surechigai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 			children = (
 				A20000000000000000000002 /* HomeView.swift */,
 				A20000000000000000000014 /* ProfileView.swift */,
+				A20000000000000000000026 /* ProfileRegistrationView.swift */,
 				A20000000000000000000021 /* EncounteredListView.swift */,
 				A20000000000000000000025 /* CollectionListView.swift */,
 			);
@@ -258,6 +261,7 @@
 				A10000000000000000000022 /* BLEManager.swift in Sources */,
 				A10000000000000000000023 /* BLEService.swift in Sources */,
 				A10000000000000000000025 /* CollectionListView.swift in Sources */,
+				A10000000000000000000026 /* ProfileRegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
