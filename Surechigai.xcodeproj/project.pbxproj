@@ -31,6 +31,13 @@
 		A10000000000000000000023 /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000023 /* BLEService.swift */; };
 		A10000000000000000000025 /* CollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000025 /* CollectionListView.swift */; };
 		A10000000000000000000026 /* ProfileRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000026 /* ProfileRegistrationView.swift */; };
+		A10000000000000000000027 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000027 /* DatabaseManager.swift */; };
+		A10000000000000000000028 /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000028 /* ProfileRepositoryProtocol.swift */; };
+		B489A8D22FF327B800D9EC78 /* UserDefaultsProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000032 /* UserDefaultsProfileRepository.swift */; };
+		B489A8D32FF327D100D9EC78 /* EncounteredProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000029 /* EncounteredProfileRepositoryProtocol.swift */; };
+		B489A8D42FF327D700D9EC78 /* SQLiteProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000030 /* SQLiteProfileRepository.swift */; };
+		B489A8D52FF327DD00D9EC78 /* SQLiteEncounteredProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */; };
+		B489A8D62FF327E400D9EC78 /* UserDefaultsEncounteredProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +66,13 @@
 		A20000000000000000000023 /* BLEService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
 		A20000000000000000000025 /* CollectionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListView.swift; sourceTree = "<group>"; };
 		A20000000000000000000026 /* ProfileRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegistrationView.swift; sourceTree = "<group>"; };
+		A20000000000000000000027 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		A20000000000000000000028 /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A20000000000000000000029 /* EncounteredProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounteredProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A20000000000000000000030 /* SQLiteProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteProfileRepository.swift; sourceTree = "<group>"; };
+		A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteEncounteredProfileRepository.swift; sourceTree = "<group>"; };
+		A20000000000000000000032 /* UserDefaultsProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProfileRepository.swift; sourceTree = "<group>"; };
+		A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsEncounteredProfileRepository.swift; sourceTree = "<group>"; };
 		A30000000000000000000001 /* Surechigai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Surechigai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,6 +112,8 @@
 				A20000000000000000000001 /* SurechigaiApp.swift */,
 				A50000000000000000000007 /* Models */,
 				A50000000000000000000008 /* Services */,
+				A50000000000000000000009 /* Database */,
+				A50000000000000000000010 /* Repositories */,
 				A50000000000000000000004 /* Views */,
 				A50000000000000000000005 /* Components */,
 				A50000000000000000000006 /* Theme */,
@@ -170,6 +186,27 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		A50000000000000000000009 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000027 /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		A50000000000000000000010 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000028 /* ProfileRepositoryProtocol.swift */,
+				A20000000000000000000029 /* EncounteredProfileRepositoryProtocol.swift */,
+				A20000000000000000000030 /* SQLiteProfileRepository.swift */,
+				A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */,
+				A20000000000000000000032 /* UserDefaultsProfileRepository.swift */,
+				A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -240,13 +277,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B489A8D42FF327D700D9EC78 /* SQLiteProfileRepository.swift in Sources */,
 				A10000000000000000000001 /* SurechigaiApp.swift in Sources */,
 				A10000000000000000000002 /* HomeView.swift in Sources */,
+				B489A8D22FF327B800D9EC78 /* UserDefaultsProfileRepository.swift in Sources */,
 				A10000000000000000000003 /* PassingRadarView.swift in Sources */,
 				A10000000000000000000004 /* StepCounterHeaderView.swift in Sources */,
 				A10000000000000000000005 /* NintendoTheme.swift in Sources */,
 				A10000000000000000000007 /* StepMilestone.swift in Sources */,
 				A10000000000000000000008 /* PedometerService.swift in Sources */,
+				B489A8D32FF327D100D9EC78 /* EncounteredProfileRepositoryProtocol.swift in Sources */,
 				A10000000000000000000010 /* UserProfile.swift in Sources */,
 				A10000000000000000000011 /* FoxAvatarConfig.swift in Sources */,
 				A10000000000000000000015 /* FoxPartCatalog.swift in Sources */,
@@ -255,6 +295,8 @@
 				A10000000000000000000012 /* ProfileStore.swift in Sources */,
 				A10000000000000000000013 /* ProfileAvatarView.swift in Sources */,
 				A10000000000000000000014 /* ProfileView.swift in Sources */,
+				B489A8D62FF327E400D9EC78 /* UserDefaultsEncounteredProfileRepository.swift in Sources */,
+				B489A8D52FF327DD00D9EC78 /* SQLiteEncounteredProfileRepository.swift in Sources */,
 				A10000000000000000000018 /* EncounteredProfile.swift in Sources */,
 				A10000000000000000000020 /* EncounteredProfilesStore.swift in Sources */,
 				A10000000000000000000021 /* EncounteredListView.swift in Sources */,
@@ -262,6 +304,8 @@
 				A10000000000000000000023 /* BLEService.swift in Sources */,
 				A10000000000000000000025 /* CollectionListView.swift in Sources */,
 				A10000000000000000000026 /* ProfileRegistrationView.swift in Sources */,
+				A10000000000000000000027 /* DatabaseManager.swift in Sources */,
+				A10000000000000000000028 /* ProfileRepositoryProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

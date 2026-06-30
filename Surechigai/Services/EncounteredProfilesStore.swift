@@ -21,10 +21,11 @@ struct DailyStat: Identifiable {
 final class EncounteredProfilesStore: ObservableObject {
     @Published private(set) var encounteredProfiles: [EncounteredProfile] = []
 
-    private static let storageKey = "surechigai.encounteredProfiles"
+    private let repository: EncounteredProfileRepositoryProtocol
     private let maxProfiles = 100
 
-    init() {
+    init(repository: EncounteredProfileRepositoryProtocol = UserDefaultsEncounteredProfileRepository()) {
+        self.repository = repository
         load()
     }
 
@@ -56,13 +57,14 @@ final class EncounteredProfilesStore: ObservableObject {
 
     func removeProfile(at index: Int) {
         guard index < encounteredProfiles.count else { return }
+        let id = encounteredProfiles[index].id.uuidString
         encounteredProfiles.remove(at: index)
-        save()
+        try? repository.delete(id: id)
     }
 
     func removeAll() {
         encounteredProfiles.removeAll()
-        save()
+        try? repository.deleteAll()
     }
 
     var totalCount: Int {
@@ -87,14 +89,12 @@ final class EncounteredProfilesStore: ObservableObject {
     }
 
     private func load() {
-        guard let data = UserDefaults.standard.data(forKey: Self.storageKey) else {
-            return
-        }
-        encounteredProfiles = (try? JSONDecoder().decode([EncounteredProfile].self, from: data)) ?? []
+        encounteredProfiles = (try? repository.loadAll()) ?? []
     }
 
     private func save() {
-        guard let data = try? JSONEncoder().encode(encounteredProfiles) else { return }
-        UserDefaults.standard.set(data, forKey: Self.storageKey)
+        for profile in encounteredProfiles {
+            try? repository.save(profile)
+        }
     }
 }
