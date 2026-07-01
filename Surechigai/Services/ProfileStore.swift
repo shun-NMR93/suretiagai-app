@@ -6,7 +6,7 @@ final class ProfileStore: ObservableObject {
 
     private let repository: ProfileRepositoryProtocol
 
-    init(repository: ProfileRepositoryProtocol = UserDefaultsProfileRepository()) {
+    init(repository: ProfileRepositoryProtocol = SQLiteProfileRepository()) {
         self.repository = repository
         var loaded = (try? repository.load()) ?? .default
         loaded.foxAvatar = loaded.foxAvatar.clamped()

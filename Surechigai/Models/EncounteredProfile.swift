@@ -20,6 +20,17 @@ struct EncounteredProfile: Codable, Identifiable, Equatable {
         self.isConfirmed = false
         self.lastEncounteredAt = Date()
     }
+    
+    init(id: UUID, profile: UserProfile, encounteredAt: Date, peerID: String, remoteUserID: String, encounterCount: Int, isConfirmed: Bool, lastEncounteredAt: Date) {
+        self.id = id
+        self.profile = profile
+        self.encounteredAt = encounteredAt
+        self.peerID = peerID
+        self.remoteUserID = remoteUserID
+        self.encounterCount = encounterCount
+        self.isConfirmed = isConfirmed
+        self.lastEncounteredAt = lastEncounteredAt
+    }
 
     var formattedDate: String {
         let formatter = DateFormatter()

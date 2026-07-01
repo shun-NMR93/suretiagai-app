@@ -77,7 +77,86 @@ final class DatabaseManager {
         print("encountered_profile table created or already exists")
     }
     
+    func executeSQL(_ sql: String, bindings: [Any]) throws {
+        var statement: OpaquePointer?
+        
+        if sqlite3_prepare_v2(db, sql, -1, &statement, nil) != SQLITE_OK {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            throw DatabaseError.prepareFailed(errorMessage)
+        }
+        
+        for (index, value) in bindings.enumerated() {
+            let index = Int32(index + 1)
+            
+            switch value {
+            case let text as String:
+                sqlite3_bind_text(statement, index, (text as NSString).utf8String, -1, nil)
+            case let integer as Int:
+                sqlite3_bind_int64(statement, index, Int64(integer))
+            case let real as Double:
+                sqlite3_bind_double(statement, index, real)
+            case let data as Data:
+                data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+                    sqlite3_bind_blob(statement, index, bytes.baseAddress, Int32(data.count), nil)
+                }
+            default:
+                sqlite3_bind_null(statement, index)
+            }
+        }
+        
+        if sqlite3_step(statement) != SQLITE_DONE {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            sqlite3_finalize(statement)
+            throw DatabaseError.executionFailed(errorMessage)
+        }
+        
+        sqlite3_finalize(statement)
+    }
+    
+    func query(_ sql: String, bindings: [Any], rowHandler: (OpaquePointer) throws -> Void) throws {
+        var statement: OpaquePointer?
+        
+        if sqlite3_prepare_v2(db, sql, -1, &statement, nil) != SQLITE_OK {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            throw DatabaseError.prepareFailed(errorMessage)
+        }
+        
+        guard let statement = statement else {
+            throw DatabaseError.prepareFailed("Failed to prepare statement")
+        }
+        
+        for (index, value) in bindings.enumerated() {
+            let index = Int32(index + 1)
+            
+            switch value {
+            case let text as String:
+                sqlite3_bind_text(statement, index, (text as NSString).utf8String, -1, nil)
+            case let integer as Int:
+                sqlite3_bind_int64(statement, index, Int64(integer))
+            case let real as Double:
+                sqlite3_bind_double(statement, index, real)
+            case let data as Data:
+                _ = data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+                    sqlite3_bind_blob(statement, index, bytes.baseAddress, Int32(data.count), nil)
+                }
+            default:
+                sqlite3_bind_null(statement, index)
+            }
+        }
+        
+        while sqlite3_step(statement) == SQLITE_ROW {
+            try rowHandler(statement)
+        }
+        
+        sqlite3_finalize(statement)
+    }
+    
     deinit {
         sqlite3_close(db)
     }
+}
+
+enum DatabaseError: Error {
+    case prepareFailed(String)
+    case executionFailed(String)
 }
