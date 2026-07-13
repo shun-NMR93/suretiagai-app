@@ -24,21 +24,65 @@ final class EncounteredProfilesStore: ObservableObject {
     private let repository: EncounteredProfileRepositoryProtocol
     private let maxProfiles = 100
 
-    init(repository: EncounteredProfileRepositoryProtocol = UserDefaultsEncounteredProfileRepository()) {
+    init(repository: EncounteredProfileRepositoryProtocol = SQLiteEncounteredProfileRepository()) {
         self.repository = repository
+        migrateFromUserDefaultsIfNeeded()
         load()
     }
 
-    func addProfile(_ profile: UserProfile, peerID: String, remoteUserID: String = "") {
-        if let existingIndex = encounteredProfiles.firstIndex(where: { $0.peerID == peerID }) {
+    private func migrateFromUserDefaultsIfNeeded() {
+        // UserDefaultsからデータをマイグレーション
+        let userDefaultsRepo = UserDefaultsEncounteredProfileRepository()
+
+        do {
+            let oldProfiles = try userDefaultsRepo.loadAll()
+
+            if !oldProfiles.isEmpty {
+                print("Migrating \(oldProfiles.count) profiles from UserDefaults to SQLite")
+
+                for profile in oldProfiles {
+                    try? repository.save(profile)
+                }
+
+                // マイグレーション完了後にUserDefaultsデータをクリア
+                try? userDefaultsRepo.deleteAll()
+                print("Migration completed")
+            }
+        } catch {
+            print("Migration error: \(error.localizedDescription)")
+        }
+    }
+
+    func shouldAddProfile(_ profile: UserProfile) -> Bool {
+        if let existingProfile = encounteredProfiles.first(where: { $0.profile.userID == profile.userID }) {
+            let calendar = Calendar.current
+            let today = calendar.startOfDay(for: Date())
+            let lastEncounteredDay = calendar.startOfDay(for: existingProfile.lastEncounteredAt)
+
+            // 同日にすれ違っている場合は追加しない
+            return !calendar.isDate(today, inSameDayAs: lastEncounteredDay)
+        }
+        return true
+    }
+
+    func addProfile(_ profile: UserProfile) {
+        if let existingIndex = encounteredProfiles.firstIndex(where: { $0.profile.userID == profile.userID }) {
+            let existingProfile = encounteredProfiles[existingIndex]
+            let calendar = Calendar.current
+            let today = calendar.startOfDay(for: Date())
+            let lastEncounteredDay = calendar.startOfDay(for: existingProfile.lastEncounteredAt)
+
+            // 同日にすれ違っている場合は何もしない
+            if calendar.isDate(today, inSameDayAs: lastEncounteredDay) {
+                return
+            }
+
+            // 異なる日の場合のみカウントを増やす
             encounteredProfiles[existingIndex].incrementEncounterCount()
             encounteredProfiles[existingIndex].profile = profile
-            if !remoteUserID.isEmpty {
-                encounteredProfiles[existingIndex].remoteUserID = remoteUserID
-            }
             encounteredProfiles.sort { $0.lastEncounteredAt > $1.lastEncounteredAt }
         } else {
-            let encountered = EncounteredProfile(profile: profile, peerID: peerID, remoteUserID: remoteUserID)
+            let encountered = EncounteredProfile(profile: profile)
             encounteredProfiles.insert(encountered, at: 0)
         }
 

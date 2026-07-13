@@ -4,29 +4,23 @@ struct EncounteredProfile: Codable, Identifiable, Equatable {
     let id: UUID
     var profile: UserProfile
     let encounteredAt: Date
-    let peerID: String
-    var remoteUserID: String
     var encounterCount: Int
     var isConfirmed: Bool
     var lastEncounteredAt: Date
 
-    init(profile: UserProfile, peerID: String, remoteUserID: String = "") {
+    init(profile: UserProfile) {
         self.id = UUID()
         self.profile = profile
         self.encounteredAt = Date()
-        self.peerID = peerID
-        self.remoteUserID = remoteUserID
         self.encounterCount = 1
         self.isConfirmed = false
         self.lastEncounteredAt = Date()
     }
     
-    init(id: UUID, profile: UserProfile, encounteredAt: Date, peerID: String, remoteUserID: String, encounterCount: Int, isConfirmed: Bool, lastEncounteredAt: Date) {
+    init(id: UUID, profile: UserProfile, encounteredAt: Date, encounterCount: Int, isConfirmed: Bool, lastEncounteredAt: Date) {
         self.id = id
         self.profile = profile
         self.encounteredAt = encounteredAt
-        self.peerID = peerID
-        self.remoteUserID = remoteUserID
         self.encounterCount = encounterCount
         self.isConfirmed = isConfirmed
         self.lastEncounteredAt = lastEncounteredAt

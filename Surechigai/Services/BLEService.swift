@@ -9,16 +9,17 @@ final class BLEService: NSObject, ObservableObject {
     @Published private(set) var isConnected = false
     @Published private(set) var statusMessage: String = "初期化中..."
     @Published private(set) var receivedData: String = ""
-    
+
     private let bleManager = BLEManager()
     private var currentProfile: UserProfile?
-    
+    private var encounteredStore: EncounteredProfilesStore?
+
     override init() {
         super.init()
-        
+
         // 通知の許可をリクエスト
         requestNotificationAuthorization()
-        
+
         // BLEマネージャーのコールバックを設定
         bleManager.statusUpdateCallback = { [weak self] status in
             Task { @MainActor in
@@ -26,19 +27,23 @@ final class BLEService: NSObject, ObservableObject {
                 self?.updateConnectionStatus(status)
             }
         }
-        
+
         bleManager.dataReceivedCallback = { [weak self] data in
             Task { @MainActor in
                 self?.receivedData = data
                 self?.handleReceivedData(data)
             }
         }
-        
+
         bleManager.onCentralSubscribed = { [weak self] in
             Task { @MainActor in
                 self?.sendProfile()
             }
         }
+    }
+
+    func setEncounteredStore(_ store: EncounteredProfilesStore) {
+        self.encounteredStore = store
     }
     
     private func requestNotificationAuthorization() {
@@ -97,11 +102,18 @@ final class BLEService: NSObject, ObservableObject {
         // 受信したデータをプロフィール情報として解析
         if let data = data.data(using: .utf8),
            let profile = try? JSONDecoder().decode(UserProfile.self, from: data) {
+
+            // 同日チェック
+            guard let store = encounteredStore,
+                  store.shouldAddProfile(profile) else {
+                return
+            }
+
             // 通知を送信
             NotificationCenter.default.post(
                 name: .didEncounterProfile,
                 object: nil,
-                userInfo: ["profile": profile, "peerID": "BLE", "remoteUserID": profile.userID]
+                userInfo: ["profile": profile]
             )
 
             // ローカル通知を発行

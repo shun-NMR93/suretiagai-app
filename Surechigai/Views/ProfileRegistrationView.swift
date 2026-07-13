@@ -167,7 +167,7 @@ struct ProfileRegistrationView: View {
             return
         }
         let profileWithUserID = UserProfile(
-            userID: UUID().uuidString,
+            userID: UUID(),
             nickname: draft.nickname,
             greetingMessage: draft.greetingMessage,
             foxAvatar: draft.foxAvatar,

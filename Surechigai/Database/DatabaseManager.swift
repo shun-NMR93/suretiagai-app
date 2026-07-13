@@ -59,8 +59,6 @@ final class DatabaseManager {
         let createTableSQL = """
         CREATE TABLE IF NOT EXISTS encountered_profile (
             id TEXT PRIMARY KEY,
-            remoteUserID TEXT,
-            peerID TEXT,
             encounteredAt REAL,
             lastEncounteredAt REAL,
             encounterCount INTEGER,
@@ -96,7 +94,7 @@ final class DatabaseManager {
             case let real as Double:
                 sqlite3_bind_double(statement, index, real)
             case let data as Data:
-                data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+                _ = data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
                     sqlite3_bind_blob(statement, index, bytes.baseAddress, Int32(data.count), nil)
                 }
             default:

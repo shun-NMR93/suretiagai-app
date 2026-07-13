@@ -20,6 +20,7 @@ struct HomeView: View {
         .onAppear {
             sparklePhase = true
             pedometer.startTracking()
+            bleService.setEncounteredStore(encounteredStore)
             bleService.startScanning()
             bleService.startAdvertising(with: profileStore.profile)
         }
@@ -32,10 +33,8 @@ struct HomeView: View {
             bleService.startAdvertising(with: newProfile)
         }
         .onReceive(NotificationCenter.default.publisher(for: .didEncounterProfile)) { notification in
-            if let profile = notification.userInfo?["profile"] as? UserProfile,
-               let peerID = notification.userInfo?["peerID"] as? String,
-               let remoteUserID = notification.userInfo?["remoteUserID"] as? String {
-                encounteredStore.addProfile(profile, peerID: peerID, remoteUserID: remoteUserID)
+            if let profile = notification.userInfo?["profile"] as? UserProfile {
+                encounteredStore.addProfile(profile)
             }
         }
         .onChange(of: scenePhase) { _, newPhase in

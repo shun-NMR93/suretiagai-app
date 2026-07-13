@@ -19,11 +19,11 @@ final class UserDefaultsProfileRepository: ProfileRepositoryProtocol {
         try save(profile)
     }
     
-    func delete(userID: String) throws {
+    func delete(userID: UUID) throws {
         UserDefaults.standard.removeObject(forKey: storageKey)
     }
     
-    func exists(userID: String) throws -> Bool {
+    func exists(userID: UUID) throws -> Bool {
         UserDefaults.standard.data(forKey: storageKey) != nil
     }
 }

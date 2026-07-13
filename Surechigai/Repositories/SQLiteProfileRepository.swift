@@ -17,7 +17,7 @@ final class SQLiteProfileRepository: ProfileRepositoryProtocol {
         """
         
         try databaseManager.executeSQL(sql, bindings: [
-            profile.userID,
+            profile.userID.uuidString,
             profile.nickname,
             profile.greetingMessage,
             profile.prefecture,
@@ -31,7 +31,7 @@ final class SQLiteProfileRepository: ProfileRepositoryProtocol {
         var result: UserProfile?
         
         try databaseManager.query(sql, bindings: []) { statement in
-            let userID = String(cString: sqlite3_column_text(statement, 0))
+            let userIDString = String(cString: sqlite3_column_text(statement, 0))
             let nickname = String(cString: sqlite3_column_text(statement, 1))
             let greetingMessage = String(cString: sqlite3_column_text(statement, 2))
             let prefecture = String(cString: sqlite3_column_text(statement, 3))
@@ -41,7 +41,7 @@ final class SQLiteProfileRepository: ProfileRepositoryProtocol {
                 let foxAvatar = try JSONDecoder().decode(FoxAvatarConfig.self, from: foxAvatarData)
                 
                 result = UserProfile(
-                    userID: userID,
+                    userID: UUID(uuidString: userIDString) ?? UUID(),
                     nickname: nickname,
                     greetingMessage: greetingMessage,
                     foxAvatar: foxAvatar,
@@ -58,17 +58,17 @@ final class SQLiteProfileRepository: ProfileRepositoryProtocol {
         fatalError("Not implemented")
     }
     
-    func delete(userID: String) throws {
+    func delete(userID: UUID) throws {
         // TODO: Implement SQLite delete operation
         fatalError("Not implemented")
     }
     
-    func exists(userID: String) throws -> Bool {
+    func exists(userID: UUID) throws -> Bool {
         let sql = "SELECT COUNT(*) FROM user_profile WHERE userID = ?;"
         
         var count = 0
         
-        try databaseManager.query(sql, bindings: [userID]) { statement in
+        try databaseManager.query(sql, bindings: [userID.uuidString]) { statement in
             count = Int(sqlite3_column_int64(statement, 0))
         }
         

@@ -1,14 +1,14 @@
 import Foundation
 
 struct UserProfile: Codable, Equatable {
-    var userID: String
+    var userID: UUID
     var nickname: String
     var greetingMessage: String
     var foxAvatar: FoxAvatarConfig
     var prefecture: String
 
     static let `default` = UserProfile(
-        userID: "",
+        userID: UUID(),
         nickname: "name",
         greetingMessage: "Hello!World!",
         foxAvatar: .default,
@@ -33,7 +33,7 @@ struct UserProfile: Codable, Equatable {
         case avatarSymbol // 旧バージョン互換（読み捨て）
     }
 
-    init(userID: String, nickname: String, greetingMessage: String, foxAvatar: FoxAvatarConfig, prefecture: String = "未設定") {
+    init(userID: UUID, nickname: String, greetingMessage: String, foxAvatar: FoxAvatarConfig, prefecture: String = "未設定") {
         self.userID = userID
         self.nickname = nickname
         self.greetingMessage = greetingMessage
@@ -43,7 +43,7 @@ struct UserProfile: Codable, Equatable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        userID = try container.decodeIfPresent(String.self, forKey: .userID) ?? ""
+        userID = try container.decodeIfPresent(UUID.self, forKey: .userID) ?? UUID()
         nickname = try container.decode(String.self, forKey: .nickname)
         greetingMessage = try container.decode(String.self, forKey: .greetingMessage)
         prefecture = try container.decodeIfPresent(String.self, forKey: .prefecture) ?? "未設定"
