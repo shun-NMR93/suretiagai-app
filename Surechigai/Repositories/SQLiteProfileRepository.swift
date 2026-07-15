@@ -27,19 +27,19 @@ final class SQLiteProfileRepository: ProfileRepositoryProtocol {
     
     func load() throws -> UserProfile? {
         let sql = "SELECT userID, nickname, greetingMessage, prefecture, foxAvatar FROM user_profile LIMIT 1;"
-        
+
         var result: UserProfile?
-        
+
         try databaseManager.query(sql, bindings: []) { statement in
             let userIDString = String(cString: sqlite3_column_text(statement, 0))
             let nickname = String(cString: sqlite3_column_text(statement, 1))
             let greetingMessage = String(cString: sqlite3_column_text(statement, 2))
             let prefecture = String(cString: sqlite3_column_text(statement, 3))
-            
+
             if let foxAvatarBlob = sqlite3_column_blob(statement, 4) {
                 let foxAvatarData = Data(bytes: foxAvatarBlob, count: Int(sqlite3_column_bytes(statement, 4)))
                 let foxAvatar = try JSONDecoder().decode(FoxAvatarConfig.self, from: foxAvatarData)
-                
+
                 result = UserProfile(
                     userID: UUID(uuidString: userIDString) ?? UUID(),
                     nickname: nickname,
@@ -49,20 +49,10 @@ final class SQLiteProfileRepository: ProfileRepositoryProtocol {
                 )
             }
         }
-        
+
         return result
     }
-    
-    func update(_ profile: UserProfile) throws {
-        // TODO: Implement SQLite update operation
-        fatalError("Not implemented")
-    }
-    
-    func delete(userID: UUID) throws {
-        // TODO: Implement SQLite delete operation
-        fatalError("Not implemented")
-    }
-    
+
     func exists(userID: UUID) throws -> Bool {
         let sql = "SELECT COUNT(*) FROM user_profile WHERE userID = ?;"
         

@@ -33,7 +33,6 @@
 		A10000000000000000000026 /* ProfileRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000026 /* ProfileRegistrationView.swift */; };
 		A10000000000000000000027 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000027 /* DatabaseManager.swift */; };
 		A10000000000000000000028 /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000028 /* ProfileRepositoryProtocol.swift */; };
-		B489A8D22FF327B800D9EC78 /* UserDefaultsProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000032 /* UserDefaultsProfileRepository.swift */; };
 		B489A8D32FF327D100D9EC78 /* EncounteredProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000029 /* EncounteredProfileRepositoryProtocol.swift */; };
 		B489A8D42FF327D700D9EC78 /* SQLiteProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000030 /* SQLiteProfileRepository.swift */; };
 		B489A8D52FF327DD00D9EC78 /* SQLiteEncounteredProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */; };
@@ -71,7 +70,6 @@
 		A20000000000000000000029 /* EncounteredProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounteredProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A20000000000000000000030 /* SQLiteProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteProfileRepository.swift; sourceTree = "<group>"; };
 		A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteEncounteredProfileRepository.swift; sourceTree = "<group>"; };
-		A20000000000000000000032 /* UserDefaultsProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProfileRepository.swift; sourceTree = "<group>"; };
 		A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsEncounteredProfileRepository.swift; sourceTree = "<group>"; };
 		A30000000000000000000001 /* Surechigai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Surechigai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -201,7 +199,6 @@
 				A20000000000000000000029 /* EncounteredProfileRepositoryProtocol.swift */,
 				A20000000000000000000030 /* SQLiteProfileRepository.swift */,
 				A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */,
-				A20000000000000000000032 /* UserDefaultsProfileRepository.swift */,
 				A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */,
 			);
 			path = Repositories;
@@ -280,7 +277,6 @@
 				B489A8D42FF327D700D9EC78 /* SQLiteProfileRepository.swift in Sources */,
 				A10000000000000000000001 /* SurechigaiApp.swift in Sources */,
 				A10000000000000000000002 /* HomeView.swift in Sources */,
-				B489A8D22FF327B800D9EC78 /* UserDefaultsProfileRepository.swift in Sources */,
 				A10000000000000000000003 /* PassingRadarView.swift in Sources */,
 				A10000000000000000000004 /* StepCounterHeaderView.swift in Sources */,
 				A10000000000000000000005 /* NintendoTheme.swift in Sources */,
