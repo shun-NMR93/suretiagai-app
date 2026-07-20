@@ -10,6 +10,7 @@ struct HomeView: View {
     @State private var showsProfile = false
     @State private var showsEncounteredList = false
     @State private var showsCollectionList = false
+    @State private var showsEncounterAnimation = false
 
     var body: some View {
         ZStack {
@@ -58,6 +59,18 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showsCollectionList) {
             CollectionListView()
+        }
+        .sheet(isPresented: $showsEncounterAnimation) {
+            if encounteredStore.unconfirmedCount > 0 {
+                EncounterAnimationView(profiles: encounteredStore.unconfirmedProfiles) {
+                    encounteredStore.unconfirmedProfiles.forEach { profile in
+                        if let index = encounteredStore.encounteredProfiles.firstIndex(where: { $0.id == profile.id }) {
+                            encounteredStore.confirmProfile(at: index)
+                        }
+                    }
+                    showsEncounterAnimation = false
+                }
+            }
         }
     }
 
@@ -216,9 +229,15 @@ struct HomeView: View {
 
             if encounteredStore.totalCount > 0 {
                 HStack(spacing: 4) {
-                    Text("すれちがった人: \(encounteredStore.totalCount)人")
-                        .font(.system(size: 13, weight: .semibold, design: .rounded))
-                        .foregroundStyle(NintendoTheme.nintendoYellow)
+                    if encounteredStore.unconfirmedCount > 0 {
+                        Text("新しくすれちがった人: \(encounteredStore.unconfirmedCount)人")
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(NintendoTheme.nintendoYellow)
+                    } else {
+                        Text("すれちがった人: \(encounteredStore.totalCount)人")
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(NintendoTheme.nintendoYellow)
+                    }
                     Image(systemName: "chevron.right")
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundStyle(NintendoTheme.nintendoYellow)
@@ -245,7 +264,11 @@ struct HomeView: View {
                 )
         )
         .onTapGesture {
-            showsEncounteredList = true
+            if encounteredStore.unconfirmedCount > 0 {
+                showsEncounterAnimation = true
+            } else {
+                showsEncounteredList = true
+            }
         }
     }
 

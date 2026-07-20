@@ -80,6 +80,7 @@ final class EncounteredProfilesStore: ObservableObject {
             // 異なる日の場合のみカウントを増やす
             encounteredProfiles[existingIndex].incrementEncounterCount()
             encounteredProfiles[existingIndex].profile = profile
+            encounteredProfiles[existingIndex].isConfirmed = false  // 未確認にリセット
             encounteredProfiles.sort { $0.lastEncounteredAt > $1.lastEncounteredAt }
         } else {
             let encountered = EncounteredProfile(profile: profile)
@@ -130,6 +131,14 @@ final class EncounteredProfilesStore: ObservableObject {
             DailyStat(date: date, count: profiles.count)
         }
         return grouped.sorted { $0.date > $1.date }
+    }
+
+    var unconfirmedCount: Int {
+        encounteredProfiles.filter { !$0.isConfirmed }.count
+    }
+
+    var unconfirmedProfiles: [EncounteredProfile] {
+        encounteredProfiles.filter { !$0.isConfirmed }
     }
 
     private func load() {

@@ -37,6 +37,7 @@
 		B489A8D42FF327D700D9EC78 /* SQLiteProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000030 /* SQLiteProfileRepository.swift */; };
 		B489A8D52FF327DD00D9EC78 /* SQLiteEncounteredProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */; };
 		B489A8D62FF327E400D9EC78 /* UserDefaultsEncounteredProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */; };
+		B48AA31E30075EB6005C17EE /* EncounterAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AA31D30075EB6005C17EE /* EncounterAnimationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteEncounteredProfileRepository.swift; sourceTree = "<group>"; };
 		A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsEncounteredProfileRepository.swift; sourceTree = "<group>"; };
 		A30000000000000000000001 /* Surechigai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Surechigai.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B48AA31D30075EB6005C17EE /* EncounterAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounterAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		A50000000000000000000004 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B48AA31D30075EB6005C17EE /* EncounterAnimationView.swift */,
 				A20000000000000000000002 /* HomeView.swift */,
 				A20000000000000000000014 /* ProfileView.swift */,
 				A20000000000000000000026 /* ProfileRegistrationView.swift */,
@@ -285,6 +288,7 @@
 				B489A8D32FF327D100D9EC78 /* EncounteredProfileRepositoryProtocol.swift in Sources */,
 				A10000000000000000000010 /* UserProfile.swift in Sources */,
 				A10000000000000000000011 /* FoxAvatarConfig.swift in Sources */,
+				B48AA31E30075EB6005C17EE /* EncounterAnimationView.swift in Sources */,
 				A10000000000000000000015 /* FoxPartCatalog.swift in Sources */,
 				A10000000000000000000016 /* FoxAvatarView.swift in Sources */,
 				A10000000000000000000017 /* FoxAvatarEditorView.swift in Sources */,

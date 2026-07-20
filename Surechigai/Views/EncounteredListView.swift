@@ -1,11 +1,18 @@
 
 import SwiftUI
 
+enum CardAnimationType {
+    case slideFromBottom
+    case fadeInScale
+    case slideFromLeft
+}
+
 struct EncounteredListView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var store: EncounteredProfilesStore
     @State private var showingDeleteAlert = false
     @State private var profileToDelete: EncounteredProfile?
+    private let animationType: CardAnimationType = .slideFromBottom
 
     var body: some View {
         NavigationStack {
@@ -84,7 +91,7 @@ struct EncounteredListView: View {
 
                 LazyVStack(spacing: 12) {
                     ForEach(Array(store.encounteredProfiles.enumerated()), id: \.element.id) { index, profile in
-                        ProfileCard(profile: profile) {
+                        ProfileCard(profile: profile, index: index, animationType: animationType) {
                             store.confirmProfile(at: index)
                         }
                         .contextMenu {
@@ -155,7 +162,11 @@ struct EncounteredListView: View {
 
 struct ProfileCard: View {
     let profile: EncounteredProfile
+    let index: Int
+    let animationType: CardAnimationType
     let onConfirm: () -> Void
+
+    @State private var isVisible = false
 
     var body: some View {
         HStack(spacing: 16) {
@@ -170,6 +181,18 @@ struct ProfileCard: View {
                     Text(profile.profile.trimmedNickname)
                         .font(.system(size: 18, weight: .heavy, design: .rounded))
                         .foregroundStyle(.white)
+
+                    if !profile.isConfirmed {
+                        Text("NEW")
+                            .font(.system(size: 10, weight: .heavy, design: .rounded))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(
+                                Capsule()
+                                    .fill(NintendoTheme.nintendoRed)
+                            )
+                    }
 
                     if profile.encounterCount > 1 {
                         Text(profile.encounterCountText)
@@ -220,6 +243,34 @@ struct ProfileCard: View {
                         .stroke(profile.isConfirmed ? NintendoTheme.streetPassGreen.opacity(0.5) : NintendoTheme.cardBorder, lineWidth: 1)
                 )
         )
+        .onAppear {
+            withAnimation(.easeOut(duration: 0.5).delay(Double(index) * 0.1)) {
+                isVisible = true
+            }
+        }
+        .modifier(CardAnimationModifier(isVisible: isVisible, animationType: animationType))
+    }
+}
+
+struct CardAnimationModifier: ViewModifier {
+    let isVisible: Bool
+    let animationType: CardAnimationType
+
+    func body(content: Content) -> some View {
+        switch animationType {
+        case .slideFromBottom:
+            content
+                .offset(y: isVisible ? 0 : 50)
+                .opacity(isVisible ? 1 : 0)
+        case .fadeInScale:
+            content
+                .opacity(isVisible ? 1 : 0)
+                .scaleEffect(isVisible ? 1 : 0.8)
+        case .slideFromLeft:
+            content
+                .offset(x: isVisible ? 0 : -100)
+                .opacity(isVisible ? 1 : 0)
+        }
     }
 }
 

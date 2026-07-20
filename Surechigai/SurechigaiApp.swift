@@ -6,7 +6,7 @@ struct SurechigaiApp: App {
     @StateObject private var encounteredStore = EncounteredProfilesStore()
 
     var body: some Scene {
-        WindowGroup {
+        WindowGroup { 
             Group {
                 if profileStore.hasProfile {
                     HomeView()
