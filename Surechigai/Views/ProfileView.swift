@@ -159,6 +159,11 @@ struct ProfileView: View {
                 FoxAvatarEditorView(config: $draft.foxAvatar)
             }
 
+            VStack(alignment: .leading, spacing: 12) {
+                fieldLabel("趣味タグ", limit: "最大3個まで選択")
+                hobbyTagsSelector
+            }
+
             if isEditing {
                 Button("キャンセル") {
                     cancelEditing()
@@ -202,6 +207,40 @@ struct ProfileView: View {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .stroke(stroke, lineWidth: 2)
             )
+    }
+
+    private var hobbyTagsSelector: some View {
+        LazyVGrid(columns: [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ], spacing: 10) {
+            ForEach(HobbyTags.allTags, id: \.self) { tag in
+                Button {
+                    toggleTag(tag)
+                } label: {
+                    Text(tag)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(draft.hobbyTags.contains(tag) ? .white : .white.opacity(0.7))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .fill(draft.hobbyTags.contains(tag) ? NintendoTheme.nintendoRed : Color.black.opacity(0.2))
+                        )
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+
+    private func toggleTag(_ tag: String) {
+        if draft.hobbyTags.contains(tag) {
+            draft.hobbyTags.removeAll { $0 == tag }
+        } else if draft.hobbyTags.count < HobbyTags.maxSelection {
+            draft.hobbyTags.append(tag)
+        }
     }
 
     private func beginEditing() {

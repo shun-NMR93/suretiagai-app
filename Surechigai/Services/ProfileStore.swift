@@ -19,7 +19,8 @@ final class ProfileStore: ObservableObject {
             nickname: String(updated.trimmedNickname.prefix(12)),
             greetingMessage: String(updated.greetingMessage.prefix(32)),
             foxAvatar: updated.foxAvatar.clamped(),
-            prefecture: updated.prefecture.isEmpty ? profile.prefecture : updated.prefecture
+            prefecture: updated.prefecture.isEmpty ? profile.prefecture : updated.prefecture,
+            hobbyTags: updated.hobbyTags
         )
         profile = normalized
         try? repository.save(profile)

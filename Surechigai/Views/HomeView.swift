@@ -56,13 +56,17 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showsEncounteredList) {
             EncounteredListView()
+                .environmentObject(profileStore)
         }
         .sheet(isPresented: $showsCollectionList) {
             CollectionListView()
         }
         .sheet(isPresented: $showsEncounterAnimation) {
             if encounteredStore.unconfirmedCount > 0 {
-                EncounterAnimationView(profiles: encounteredStore.unconfirmedProfiles) {
+                EncounterAnimationView(
+                    profiles: encounteredStore.unconfirmedProfiles,
+                    myProfile: profileStore.profile
+                ) {
                     encounteredStore.unconfirmedProfiles.forEach { profile in
                         if let index = encounteredStore.encounteredProfiles.firstIndex(where: { $0.id == profile.id }) {
                             encounteredStore.confirmProfile(at: index)

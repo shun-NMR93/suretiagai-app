@@ -10,6 +10,7 @@ enum CardAnimationType {
 struct EncounteredListView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var store: EncounteredProfilesStore
+    @EnvironmentObject private var profileStore: ProfileStore
     @State private var showingDeleteAlert = false
     @State private var profileToDelete: EncounteredProfile?
     private let animationType: CardAnimationType = .slideFromBottom
@@ -91,9 +92,9 @@ struct EncounteredListView: View {
 
                 LazyVStack(spacing: 12) {
                     ForEach(Array(store.encounteredProfiles.enumerated()), id: \.element.id) { index, profile in
-                        ProfileCard(profile: profile, index: index, animationType: animationType) {
+                        ProfileCard(profile: profile, index: index, animationType: animationType, onConfirm: {
                             store.confirmProfile(at: index)
-                        }
+                        }, myProfile: profileStore.profile)
                         .contextMenu {
                             Button(role: .destructive) {
                                 profileToDelete = profile
@@ -165,6 +166,7 @@ struct ProfileCard: View {
     let index: Int
     let animationType: CardAnimationType
     let onConfirm: () -> Void
+    let myProfile: UserProfile
 
     @State private var isVisible = false
 
@@ -216,6 +218,23 @@ struct ProfileCard: View {
                     Text(profile.profile.prefecture)
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                         .foregroundStyle(NintendoTheme.nintendoYellow)
+                }
+
+                if !profile.profile.hobbyTags.isEmpty {
+                    HStack(spacing: 4) {
+                        ForEach(profile.profile.hobbyTags, id: \.self) { tag in
+                            let isCommon = myProfile.hobbyTags.contains(tag)
+                            Text(tag)
+                                .font(.system(size: 10, weight: .semibold, design: .rounded))
+                                .foregroundStyle(isCommon ? .white : .white.opacity(0.6))
+                                .padding(.horizontal, 6)
+                                .padding(.vertical, 2)
+                                .background(
+                                    Capsule()
+                                        .fill(isCommon ? NintendoTheme.nintendoRed.opacity(0.7) : Color.white.opacity(0.15))
+                                )
+                        }
+                    }
                 }
 
                 Text(profile.relativeTime)

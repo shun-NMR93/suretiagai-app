@@ -124,6 +124,11 @@ struct ProfileRegistrationView: View {
                 fieldLabel("きつねアイコン", limit: "パーツを組み合わせよう")
                 FoxAvatarEditorView(config: $draft.foxAvatar)
             }
+
+            VStack(alignment: .leading, spacing: 12) {
+                fieldLabel("趣味タグ", limit: "最大3個まで選択")
+                hobbyTagsSelector
+            }
         }
         .padding(20)
         .background(cardBackground(stroke: NintendoTheme.cardBorder))
@@ -161,6 +166,40 @@ struct ProfileRegistrationView: View {
             )
     }
 
+    private var hobbyTagsSelector: some View {
+        LazyVGrid(columns: [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ], spacing: 10) {
+            ForEach(HobbyTags.allTags, id: \.self) { tag in
+                Button {
+                    toggleTag(tag)
+                } label: {
+                    Text(tag)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(draft.hobbyTags.contains(tag) ? .white : .white.opacity(0.7))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .fill(draft.hobbyTags.contains(tag) ? NintendoTheme.nintendoRed : Color.black.opacity(0.2))
+                        )
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+
+    private func toggleTag(_ tag: String) {
+        if draft.hobbyTags.contains(tag) {
+            draft.hobbyTags.removeAll { $0 == tag }
+        } else if draft.hobbyTags.count < HobbyTags.maxSelection {
+            draft.hobbyTags.append(tag)
+        }
+    }
+
     private func saveProfile() {
         guard draft.isValid else {
             showValidationAlert = true
@@ -171,7 +210,8 @@ struct ProfileRegistrationView: View {
             nickname: draft.nickname,
             greetingMessage: draft.greetingMessage,
             foxAvatar: draft.foxAvatar,
-            prefecture: draft.prefecture
+            prefecture: draft.prefecture,
+            hobbyTags: draft.hobbyTags
         )
         profileStore.save(profileWithUserID)
         navigateToHome = true

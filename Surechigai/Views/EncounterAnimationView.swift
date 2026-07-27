@@ -2,11 +2,13 @@ import SwiftUI
 
 struct EncounterAnimationView: View {
     let profiles: [EncounteredProfile]
+    let myProfile: UserProfile
     let onComplete: () -> Void
 
     @State private var currentIndex = 0
     @State private var isAnimating = false
     @State private var showCard = false
+    @State private var showCommonTags = false
 
     var body: some View {
         NavigationStack {
@@ -33,10 +35,6 @@ struct EncounterAnimationView: View {
                         Button {
                             withAnimation(.easeInOut(duration: 0.3)) {
                                 currentIndex += 1
-                                showCard = false
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    showCard = true
-                                }
                             }
                         } label: {
                             Text("次へ")
@@ -70,6 +68,14 @@ struct EncounterAnimationView: View {
         .onAppear {
             showCard = true
         }
+        .onChange(of: currentIndex) { _, _ in
+            showCard = false
+            showCommonTags = false
+        }
+    }
+
+    private var commonHobbyTags: [String] {
+        profiles[currentIndex].profile.commonHobbyTags(with: myProfile)
     }
 
     private var profileCard: some View {
@@ -103,6 +109,82 @@ struct EncounterAnimationView: View {
                     Text("\(profiles[currentIndex].encounterCount)回目のすれちがい")
                         .font(.system(size: 13, weight: .semibold, design: .rounded))
                         .foregroundStyle(NintendoTheme.streetPassGreen)
+                }
+
+                if !profiles[currentIndex].profile.hobbyTags.isEmpty {
+                    if !commonHobbyTags.isEmpty {
+                        VStack(spacing: 8) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "heart.fill")
+                                    .font(.system(size: 14))
+                                    .foregroundStyle(NintendoTheme.nintendoRed)
+                                Text("共通の趣味")
+                                    .font(.system(size: 14, weight: .heavy, design: .rounded))
+                                    .foregroundStyle(NintendoTheme.nintendoRed)
+                            }
+
+                            LazyVGrid(columns: [
+                                GridItem(.flexible()),
+                                GridItem(.flexible())
+                            ], spacing: 8) {
+                                ForEach(commonHobbyTags, id: \.self) { tag in
+                                    Text(tag)
+                                        .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                        .foregroundStyle(.white)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 6)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                                .fill(NintendoTheme.nintendoRed.opacity(0.9))
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                                                )
+                                        )
+                                }
+                            }
+                        }
+                        .padding(.top, 8)
+                        .scaleEffect(showCommonTags ? 1 : 0.8)
+                        .opacity(showCommonTags ? 1 : 0)
+                        .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCommonTags)
+                    } else {
+                        VStack(spacing: 8) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "heart")
+                                    .font(.system(size: 14))
+                                    .foregroundStyle(.white.opacity(0.6))
+                                Text("趣味")
+                                    .font(.system(size: 14, weight: .heavy, design: .rounded))
+                                    .foregroundStyle(.white.opacity(0.6))
+                            }
+
+                            LazyVGrid(columns: [
+                                GridItem(.flexible()),
+                                GridItem(.flexible())
+                            ], spacing: 8) {
+                                ForEach(profiles[currentIndex].profile.hobbyTags, id: \.self) { tag in
+                                    Text(tag)
+                                        .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                        .foregroundStyle(.white)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 6)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                                .fill(Color.white.opacity(0.15))
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                                                )
+                                        )
+                                }
+                            }
+                        }
+                        .padding(.top, 8)
+                        .scaleEffect(showCommonTags ? 1 : 0.8)
+                        .opacity(showCommonTags ? 1 : 0)
+                        .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCommonTags)
+                    }
                 }
             }
             .opacity(showCard ? 1 : 0)
@@ -161,7 +243,8 @@ struct EncounterAnimationView: View {
         profiles: [
             EncounteredProfile(profile: UserProfile.default),
             EncounteredProfile(profile: UserProfile.default)
-        ]
+        ],
+        myProfile: UserProfile.default
     ) {
         print("Complete")
     }

@@ -38,6 +38,7 @@
 		B489A8D52FF327DD00D9EC78 /* SQLiteEncounteredProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000031 /* SQLiteEncounteredProfileRepository.swift */; };
 		B489A8D62FF327E400D9EC78 /* UserDefaultsEncounteredProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */; };
 		B48AA31E30075EB6005C17EE /* EncounterAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AA31D30075EB6005C17EE /* EncounterAnimationView.swift */; };
+		B4A5B93630171AAC00D7053D /* HobbyTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A5B93530171AA600D7053D /* HobbyTags.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		A20000000000000000000033 /* UserDefaultsEncounteredProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsEncounteredProfileRepository.swift; sourceTree = "<group>"; };
 		A30000000000000000000001 /* Surechigai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Surechigai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48AA31D30075EB6005C17EE /* EncounterAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncounterAnimationView.swift; sourceTree = "<group>"; };
+		B4A5B93530171AA600D7053D /* HobbyTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyTags.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		A50000000000000000000007 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B4A5B93530171AA600D7053D /* HobbyTags.swift */,
 				A20000000000000000000007 /* StepMilestone.swift */,
 				A20000000000000000000010 /* UserProfile.swift */,
 				A20000000000000000000011 /* FoxAvatarConfig.swift */,
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B489A8D42FF327D700D9EC78 /* SQLiteProfileRepository.swift in Sources */,
+				B4A5B93630171AAC00D7053D /* HobbyTags.swift in Sources */,
 				A10000000000000000000001 /* SurechigaiApp.swift in Sources */,
 				A10000000000000000000002 /* HomeView.swift in Sources */,
 				A10000000000000000000003 /* PassingRadarView.swift in Sources */,

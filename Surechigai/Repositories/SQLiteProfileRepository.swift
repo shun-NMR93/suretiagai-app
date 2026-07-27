@@ -10,23 +10,26 @@ final class SQLiteProfileRepository: ProfileRepositoryProtocol {
     
     func save(_ profile: UserProfile) throws {
         let foxAvatarData = try JSONEncoder().encode(profile.foxAvatar)
-        
+        let hobbyTagsData = try JSONEncoder().encode(profile.hobbyTags)
+        let hobbyTagsString = String(data: hobbyTagsData, encoding: .utf8) ?? "[]"
+
         let sql = """
-        INSERT OR REPLACE INTO user_profile (userID, nickname, greetingMessage, prefecture, foxAvatar)
-        VALUES (?, ?, ?, ?, ?);
+        INSERT OR REPLACE INTO user_profile (userID, nickname, greetingMessage, prefecture, foxAvatar, hobbyTags)
+        VALUES (?, ?, ?, ?, ?, ?);
         """
-        
+
         try databaseManager.executeSQL(sql, bindings: [
             profile.userID.uuidString,
             profile.nickname,
             profile.greetingMessage,
             profile.prefecture,
-            foxAvatarData
+            foxAvatarData,
+            hobbyTagsString
         ])
     }
     
     func load() throws -> UserProfile? {
-        let sql = "SELECT userID, nickname, greetingMessage, prefecture, foxAvatar FROM user_profile LIMIT 1;"
+        let sql = "SELECT userID, nickname, greetingMessage, prefecture, foxAvatar, hobbyTags FROM user_profile LIMIT 1;"
 
         var result: UserProfile?
 
@@ -40,12 +43,21 @@ final class SQLiteProfileRepository: ProfileRepositoryProtocol {
                 let foxAvatarData = Data(bytes: foxAvatarBlob, count: Int(sqlite3_column_bytes(statement, 4)))
                 let foxAvatar = try JSONDecoder().decode(FoxAvatarConfig.self, from: foxAvatarData)
 
+                var hobbyTags: [String] = []
+                if let hobbyTagsText = sqlite3_column_text(statement, 5) {
+                    let hobbyTagsString = String(cString: hobbyTagsText)
+                    if let hobbyTagsData = hobbyTagsString.data(using: .utf8) {
+                        hobbyTags = try JSONDecoder().decode([String].self, from: hobbyTagsData)
+                    }
+                }
+
                 result = UserProfile(
                     userID: UUID(uuidString: userIDString) ?? UUID(),
                     nickname: nickname,
                     greetingMessage: greetingMessage,
                     foxAvatar: foxAvatar,
-                    prefecture: prefecture
+                    prefecture: prefecture,
+                    hobbyTags: hobbyTags
                 )
             }
         }

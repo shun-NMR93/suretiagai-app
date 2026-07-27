@@ -43,15 +43,16 @@ final class DatabaseManager {
             nickname TEXT,
             greetingMessage TEXT,
             prefecture TEXT,
-            foxAvatar BLOB
+            foxAvatar BLOB,
+            hobbyTags TEXT
         );
         """
-        
+
         if sqlite3_exec(db, createTableSQL, nil, nil, nil) != SQLITE_OK {
             let errorMessage = String(cString: sqlite3_errmsg(db))
             fatalError("Cannot create user_profile table: \(errorMessage)")
         }
-        
+
         print("user_profile table created or already exists")
     }
     
